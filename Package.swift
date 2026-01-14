@@ -1,4 +1,5 @@
 // swift-tools-version: 5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
@@ -6,12 +7,18 @@ let package = Package(
     name: "DesignSystem",
     platforms: [
         .iOS(.v15),
-        .macOS(.v12)
+        .macOS(.v12),
+        .tvOS(.v15),
+        .watchOS(.v8)
     ],
     products: [
         .library(
             name: "DesignSystem",
             targets: ["DesignSystem"]
+        ),
+        .library(
+            name: "FoundationColor",
+            targets: ["FoundationColor"]
         ),
     ],
     targets: [
@@ -19,10 +26,20 @@ let package = Package(
             name: "DesignSystem",
             path: "Sources/DesignSystem"
         ),
+        .target(
+            name: "FoundationColor",
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"],
             path: "Tests/DesignSystemTests"
+        ),
+        .testTarget(
+            name: "FoundationColorTests",
+            dependencies: ["FoundationColor"]
         ),
     ]
 )
