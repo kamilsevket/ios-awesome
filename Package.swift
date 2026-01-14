@@ -24,6 +24,10 @@ let package = Package(
             name: "DesignSystemTypography",
             targets: ["DesignSystemTypography"]
         ),
+        .library(
+            name: "FoundationIcons",
+            targets: ["FoundationIcons"]
+        ),
     ],
     targets: [
         .target(
@@ -42,6 +46,12 @@ let package = Package(
                 .process("Resources")
             ]
         ),
+        .target(
+            name: "FoundationIcons",
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"],
@@ -54,6 +64,10 @@ let package = Package(
         .testTarget(
             name: "DesignSystemTypographyTests",
             dependencies: ["DesignSystemTypography"]
+        ),
+        .testTarget(
+            name: "FoundationIconsTests",
+            dependencies: ["FoundationIcons"]
         ),
     ]
 )
