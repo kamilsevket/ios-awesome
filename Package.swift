@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "FoundationColor",
+    name: "DesignSystem",
     platforms: [
         .iOS(.v15),
         .macOS(.v12),
@@ -13,16 +13,29 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "DesignSystem",
+            targets: ["DesignSystem"]
+        ),
+        .library(
             name: "FoundationColor",
             targets: ["FoundationColor"]
         ),
     ],
     targets: [
         .target(
+            name: "DesignSystem",
+            path: "Sources/DesignSystem"
+        ),
+        .target(
             name: "FoundationColor",
             resources: [
                 .process("Resources")
             ]
+        ),
+        .testTarget(
+            name: "DesignSystemTests",
+            dependencies: ["DesignSystem"],
+            path: "Tests/DesignSystemTests"
         ),
         .testTarget(
             name: "FoundationColorTests",
