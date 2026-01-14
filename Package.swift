@@ -20,6 +20,10 @@ let package = Package(
             name: "FoundationColor",
             targets: ["FoundationColor"]
         ),
+        .library(
+            name: "DesignSystemTypography",
+            targets: ["DesignSystemTypography"]
+        ),
     ],
     targets: [
         .target(
@@ -32,6 +36,12 @@ let package = Package(
                 .process("Resources")
             ]
         ),
+        .target(
+            name: "DesignSystemTypography",
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"],
@@ -40,6 +50,10 @@ let package = Package(
         .testTarget(
             name: "FoundationColorTests",
             dependencies: ["FoundationColor"]
+        ),
+        .testTarget(
+            name: "DesignSystemTypographyTests",
+            dependencies: ["DesignSystemTypography"]
         ),
     ]
 )
