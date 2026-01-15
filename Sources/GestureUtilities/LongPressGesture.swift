@@ -178,20 +178,22 @@ public struct LongPressProgressModifier: ViewModifier {
         let updateInterval: TimeInterval = 0.02
         let progressIncrement = CGFloat(updateInterval / configuration.minimumDuration)
 
-        timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { timer in
-            progress += progressIncrement
+        timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { [self] timer in
+            Task { @MainActor in
+                progress += progressIncrement
 
-            if progress >= 1.0 {
-                timer.invalidate()
-                self.timer = nil
+                if progress >= 1.0 {
+                    timer.invalidate()
+                    self.timer = nil
 
-                if configuration.hapticFeedback {
-                    HapticManager.shared.trigger(configuration.hapticStyle)
+                    if configuration.hapticFeedback {
+                        HapticManager.shared.trigger(configuration.hapticStyle)
+                    }
+
+                    action()
+                    isPressed = false
+                    progress = 0
                 }
-
-                action()
-                isPressed = false
-                progress = 0
             }
         }
     }
