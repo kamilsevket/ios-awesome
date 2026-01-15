@@ -104,3 +104,98 @@ public typealias ContextMenuButton = DSContextMenuButton
 public typealias ActionSheet = DSActionSheet
 public typealias ActionSheetAction = DSActionSheetAction
 public typealias ActionSheetStyle = DSActionSheetStyle
+
+// MARK: - List Components
+// - DSList: Customizable list wrapper with enhanced styling
+// - DSListStyle: List style variants (plain, insetGrouped, grouped, sidebar)
+// - DSSeparatorStyle: Separator style variants (none, singleLine, singleLineInset)
+//
+// - DSSwipeAction: Swipe action configuration
+// - DSSwipeActionRole: Swipe action semantic roles (destructive, cancel, none)
+// - DSSwipeActionsModifier: Modifier for adding swipe actions
+// - View.dsSwipeActions(): View modifier for swipe actions
+// - View.dsDeleteAction(): Convenience modifier for delete action
+//
+// - DSReorderableList: List with drag-to-reorder support
+// - DSReorderHandleStyle: Reorder handle styles (none, standard, custom)
+//
+// - DSSection: Section with customizable header/footer
+// - DSSectionHeader: Styled section header
+// - DSSectionFooter: Styled section footer
+// - DSSectionHeaderStyle: Header styles (plain, prominent, uppercase)
+// - TextTransform: Text transformation options
+//
+// - DSStickyHeader: Sticky header for scroll views
+// - DSStickyHeaderStyle: Sticky header styles (standard, blurred, solid)
+// - DSStickyHeaderList: List with built-in sticky headers
+//
+// - DSPaginatedList: List with infinite scroll support
+// - DSPaginationState: Pagination state (idle, loading, loaded, error, finished)
+// - DSPaginationConfig: Pagination configuration options
+// - DSInfiniteScrollModifier: Modifier for infinite scroll behavior
+// - View.dsInfiniteScroll(): View modifier for infinite scroll
+
+/// List type aliases for convenience
+public typealias List = DSList
+public typealias ListStyle = DSListStyle
+public typealias SeparatorStyle = DSSeparatorStyle
+
+public typealias SwipeAction = DSSwipeAction
+public typealias SwipeActionRole = DSSwipeActionRole
+
+public typealias ReorderableList = DSReorderableList
+public typealias ReorderHandleStyle = DSReorderHandleStyle
+
+public typealias Section = DSSection
+public typealias SectionHeader = DSSectionHeader
+public typealias SectionFooter = DSSectionFooter
+public typealias SectionHeaderStyle = DSSectionHeaderStyle
+
+public typealias StickyHeader = DSStickyHeader
+public typealias StickyHeaderStyle = DSStickyHeaderStyle
+public typealias StickyHeaderList = DSStickyHeaderList
+
+public typealias PaginatedList = DSPaginatedList
+public typealias PaginationState = DSPaginationState
+public typealias PaginationConfig = DSPaginationConfig
+
+// MARK: - Animation Utilities
+// - Transition+Extensions: Design System transition presets (fadeIn, fadeOut, slideUp, slideDown, etc.)
+// - Animation+Extensions: Spring presets (gentle, snappy, bouncy, stiff, interactive)
+// - KeyframeAnimation: Multi-step keyframe animations (shake, bounce, pulse, wiggle, heartbeat)
+// - DSLottieView: Lottie animation wrapper with loop modes and state management
+// - AnimationPresets: Enum-based animation presets with reduce motion support
+// - WithAnimationHelpers: Convenient animation execution helpers
+// - DSAnimations: Namespace for animation helper functions
+// - DSAnimationStateManager: Helper class to manage animation states
+//
+// Spring Presets:
+// - Animation.ds.spring.gentle: Soft and slow (response: 0.5, damping: 0.8)
+// - Animation.ds.spring.snappy: Quick and responsive (response: 0.3, damping: 0.7)
+// - Animation.ds.spring.bouncy: Playful with overshoot (response: 0.4, damping: 0.5)
+// - Animation.ds.spring.stiff: Very quick, minimal bounce (response: 0.2, damping: 0.9)
+// - Animation.ds.spring.interactive: For gesture-driven animations (response: 0.15, damping: 0.86)
+//
+// Transition Presets:
+// - AnyTransition.ds.fadeIn, fadeOut, fadeQuick, fadeSlow
+// - AnyTransition.ds.slideUp, slideDown, slideLeft, slideRight
+// - AnyTransition.ds.scale, scaleFromZero, bounce, popIn
+// - AnyTransition.ds.modal, toast, snackbar
+//
+// View Modifiers:
+// - View.dsShake(): Apply shake animation
+// - View.dsBounce(): Apply bounce animation
+// - View.dsPulse(): Apply pulse animation
+// - View.dsWiggle(): Apply wiggle animation
+// - View.dsHeartbeat(): Apply heartbeat animation
+// - View.dsTransition(): Apply DS transition with reduce motion support
+// - View.dsAnimation(): Apply DS animation with reduce motion support
+
+/// Animation type aliases for convenience
+public typealias AnimationPreset = DSAnimationPreset
+public typealias SpringPreset = DSSpringPreset
+public typealias EasingPreset = DSEasingPreset
+public typealias LottieLoopMode = DSLottieLoopMode
+public typealias LottieContentMode = DSLottieContentMode
+public typealias LottieView = DSLottieView
+public typealias AnimationStateManager = DSAnimationStateManager
