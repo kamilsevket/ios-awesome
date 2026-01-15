@@ -7,7 +7,7 @@ let package = Package(
     name: "DesignSystem",
     platforms: [
         .iOS(.v15),
-        .macOS(.v12),
+        .macOS(.v13),
         .tvOS(.v15),
         .watchOS(.v8)
     ],
