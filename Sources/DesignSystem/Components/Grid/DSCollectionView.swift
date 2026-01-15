@@ -1,4 +1,6 @@
 import SwiftUI
+
+#if canImport(UIKit)
 import UIKit
 
 // MARK: - DSCollectionView (UIKit Bridge)
@@ -503,3 +505,4 @@ extension DSSectionedCollectionView where Header == EmptyView, Footer == EmptyVi
         self.onSelect = onSelect
     }
 }
+#endif
