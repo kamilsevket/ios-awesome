@@ -158,3 +158,44 @@ public typealias StickyHeaderList = DSStickyHeaderList
 public typealias PaginatedList = DSPaginatedList
 public typealias PaginationState = DSPaginationState
 public typealias PaginationConfig = DSPaginationConfig
+
+// MARK: - Grid Components
+// - DSGrid: Base grid component wrapping LazyVGrid
+// - DSGridIndexed: Grid variant with item index in content builder
+// - DSScrollableGrid: Grid wrapped in ScrollView
+// - DSAdaptiveGrid: Adaptive grid that adjusts columns based on width
+// - DSResponsiveGrid: Grid with different columns for size classes
+// - DSAutoGrid: Grid that calculates optimal column count
+// - DSMasonryGrid: Pinterest-style masonry layout
+// - DSWaterfallGrid: Dynamic height-balanced masonry grid
+// - DSAdaptiveMasonryGrid: Adaptive masonry with column count based on width
+// - DSCollectionView: UICollectionView bridge for SwiftUI
+// - DSSectionedCollectionView: Collection view with section support
+//
+// Configuration:
+// - DSGridColumns: Column configuration (fixed, adaptive, flexible)
+// - DSGridSpacing: Spacing configuration for grids
+// - DSGridSection: Section configuration with header/footer
+// - DSGridSelectionMode: Selection modes (none, single, multiple)
+// - DSCollectionLayout: UICollectionView layout configurations
+
+/// Grid type aliases for convenience
+public typealias Grid = DSGrid
+public typealias GridColumns = DSGridColumns
+public typealias GridSpacing = DSGridSpacing
+public typealias GridSelectionMode = DSGridSelectionMode
+public typealias GridSection = DSGridSection
+
+public typealias AdaptiveGrid = DSAdaptiveGrid
+public typealias ResponsiveGrid = DSResponsiveGrid
+public typealias AutoGrid = DSAutoGrid
+public typealias ScrollableGrid = DSScrollableGrid
+public typealias GridIndexed = DSGridIndexed
+
+public typealias MasonryGrid = DSMasonryGrid
+public typealias WaterfallGrid = DSWaterfallGrid
+public typealias AdaptiveMasonryGrid = DSAdaptiveMasonryGrid
+
+public typealias CollectionView = DSCollectionView
+public typealias CollectionLayout = DSCollectionLayout
+public typealias SectionedCollectionView = DSSectionedCollectionView
