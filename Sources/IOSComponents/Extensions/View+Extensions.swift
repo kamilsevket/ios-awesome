@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 public extension View {
     /// Conditionally applies a transformation
@@ -25,10 +28,12 @@ public extension View {
         }
     }
 
+    #if canImport(UIKit)
     /// Applies a corner radius to specific corners
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
+    #endif
 
     /// Adds a shadow with common defaults
     func softShadow(
@@ -66,6 +71,7 @@ public extension View {
     }
 }
 
+#if canImport(UIKit)
 /// Custom shape for rounded corners on specific sides
 public struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
@@ -80,3 +86,4 @@ public struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+#endif

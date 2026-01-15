@@ -1,5 +1,5 @@
 import SwiftUI
-#if os(iOS)
+#if canImport(UIKit)
 import UIKit
 #endif
 
@@ -357,7 +357,7 @@ public struct DSRangeSlider: View {
     // MARK: - Haptic Feedback
 
     private func triggerHapticFeedback() {
-        #if os(iOS)
+        #if canImport(UIKit)
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         #endif

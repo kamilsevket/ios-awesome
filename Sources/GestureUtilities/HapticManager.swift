@@ -179,7 +179,7 @@ public struct HapticFeedbackModifier<Value: Equatable>: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .onChange(of: value) { _, newValue in
+            .onChange(of: value) { newValue in
                 if previousValue != nil {
                     HapticManager.shared.trigger(style)
                 }
@@ -208,11 +208,13 @@ public struct HapticButtonStyle: ButtonStyle {
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .onChange(of: configuration.isPressed) { _, isPressed in
-                if isPressed {
-                    HapticManager.shared.trigger(pressedStyle)
-                } else if let style = releasedStyle {
-                    HapticManager.shared.trigger(style)
+            .onChange(of: configuration.isPressed) { isPressed in
+                Task { @MainActor in
+                    if isPressed {
+                        HapticManager.shared.trigger(pressedStyle)
+                    } else if let style = releasedStyle {
+                        HapticManager.shared.trigger(style)
+                    }
                 }
             }
     }
@@ -240,7 +242,9 @@ public extension View {
     /// Triggers haptic feedback immediately.
     func triggerHaptic(_ style: HapticStyle) -> some View {
         self.onAppear {
-            HapticManager.shared.trigger(style)
+            Task { @MainActor in
+                HapticManager.shared.trigger(style)
+            }
         }
     }
 }

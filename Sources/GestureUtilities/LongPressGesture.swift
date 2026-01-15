@@ -107,7 +107,7 @@ public struct LongPressGestureModifier: ViewModifier {
                         action()
                     }
             )
-            .onChange(of: isPressed) { _, newValue in
+            .onChange(of: isPressed) { newValue in
                 if newValue {
                     if configuration.hapticOnStart {
                         HapticManager.shared.trigger(.light)
@@ -172,26 +172,30 @@ public struct LongPressProgressModifier: ViewModifier {
         progress = 0
 
         if configuration.hapticOnStart {
-            HapticManager.shared.trigger(.light)
+            Task { @MainActor in
+                HapticManager.shared.trigger(.light)
+            }
         }
 
         let updateInterval: TimeInterval = 0.02
         let progressIncrement = CGFloat(updateInterval / configuration.minimumDuration)
 
-        timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { timer in
-            progress += progressIncrement
+        timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { [self] timer in
+            Task { @MainActor in
+                progress += progressIncrement
 
-            if progress >= 1.0 {
-                timer.invalidate()
-                self.timer = nil
+                if progress >= 1.0 {
+                    timer.invalidate()
+                    self.timer = nil
 
-                if configuration.hapticFeedback {
-                    HapticManager.shared.trigger(configuration.hapticStyle)
+                    if configuration.hapticFeedback {
+                        HapticManager.shared.trigger(configuration.hapticStyle)
+                    }
+
+                    action()
+                    isPressed = false
+                    progress = 0
                 }
-
-                action()
-                isPressed = false
-                progress = 0
             }
         }
     }
@@ -245,7 +249,7 @@ public struct LongPressStateModifier: ViewModifier {
                         }
                     }
             )
-            .onChange(of: isDetecting) { _, newValue in
+            .onChange(of: isDetecting) { newValue in
                 state = newValue ? .pressing : .inactive
             }
             .accessibilityAction(named: "Long press") {

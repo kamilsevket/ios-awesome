@@ -152,7 +152,9 @@ public struct PinchToZoomModifier: ViewModifier {
                             lastScale = 1.0
 
                             if configuration.hapticFeedback {
-                                HapticManager.shared.trigger(.light)
+                                Task { @MainActor in
+                                    HapticManager.shared.trigger(.light)
+                                }
                             }
                         }
 
@@ -180,14 +182,18 @@ public struct PinchToZoomModifier: ViewModifier {
         guard configuration.hapticFeedback else { return }
 
         if newScale <= configuration.minScale && !hasTriggeredMinHaptic {
-            HapticManager.shared.trigger(configuration.hapticStyle)
+            Task { @MainActor in
+                HapticManager.shared.trigger(configuration.hapticStyle)
+            }
             hasTriggeredMinHaptic = true
         } else if newScale > configuration.minScale {
             hasTriggeredMinHaptic = false
         }
 
         if newScale >= configuration.maxScale && !hasTriggeredMaxHaptic {
-            HapticManager.shared.trigger(configuration.hapticStyle)
+            Task { @MainActor in
+                HapticManager.shared.trigger(configuration.hapticStyle)
+            }
             hasTriggeredMaxHaptic = true
         } else if newScale < configuration.maxScale {
             hasTriggeredMaxHaptic = false
@@ -351,7 +357,9 @@ public struct ZoomableContainer<Content: View>: View {
             lastOffset = .zero
 
             if configuration.hapticFeedback {
-                HapticManager.shared.trigger(.light)
+                Task { @MainActor in
+                    HapticManager.shared.trigger(.light)
+                }
             }
         }
     }

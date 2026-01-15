@@ -163,16 +163,6 @@ public struct DSCustomPullToRefresh<Content: View, Indicator: View>: View {
     }
 }
 
-// MARK: - Preference Key
-
-private struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
-
 // MARK: - Default Pull Indicator
 
 /// A default pull-to-refresh indicator with circular progress.

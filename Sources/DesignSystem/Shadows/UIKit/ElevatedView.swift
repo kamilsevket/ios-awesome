@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 // MARK: - Elevated View
@@ -150,3 +151,4 @@ open class FloatingActionView: ElevatedView {
         }
     }
 }
+#endif

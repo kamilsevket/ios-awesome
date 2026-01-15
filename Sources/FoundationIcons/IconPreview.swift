@@ -22,29 +22,42 @@ public struct IconPreview: View {
     public init() {}
 
     public var body: some View {
+        #if os(iOS)
         NavigationStack {
-            VStack(spacing: 0) {
-                // Size selector
-                sizeSelector
-
-                // Tab picker
-                Picker("Icon Type", selection: $selectedTab) {
-                    Text("SF Symbols").tag(0)
-                    Text("Custom Icons").tag(1)
-                }
-                .pickerStyle(.segmented)
-                .padding()
-
-                // Content
-                if selectedTab == 0 {
-                    sfSymbolsGrid
-                } else {
-                    customIconsGrid
-                }
-            }
-            .navigationTitle("Icons")
-            .searchable(text: $searchText, prompt: "Search icons")
+            contentView
         }
+        #else
+        NavigationView {
+            contentView
+        }
+        #endif
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        VStack(spacing: 0) {
+            // Size selector
+            sizeSelector
+
+            // Tab picker
+            Picker("Icon Type", selection: $selectedTab) {
+                Text("SF Symbols").tag(0)
+                Text("Custom Icons").tag(1)
+            }
+            .pickerStyle(.segmented)
+            .padding()
+
+            // Content
+            if selectedTab == 0 {
+                sfSymbolsGrid
+            } else {
+                customIconsGrid
+            }
+        }
+        .navigationTitle("Icons")
+        #if os(iOS)
+        .searchable(text: $searchText, prompt: "Search icons")
+        #endif
     }
 
     // MARK: - Size Selector
@@ -74,7 +87,11 @@ public struct IconPreview: View {
             .padding(.horizontal)
         }
         .padding(.vertical, 8)
+        #if os(iOS)
         .background(Color(.secondarySystemBackground))
+        #else
+        .background(Color.gray.opacity(0.1))
+        #endif
     }
 
     private func sizeName(_ size: IconSize) -> String {
@@ -131,7 +148,11 @@ public struct IconPreview: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
+        #if os(iOS)
         .background(Color(.tertiarySystemBackground))
+        #else
+        .background(Color.gray.opacity(0.05))
+        #endif
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 
@@ -178,7 +199,11 @@ public struct IconPreview: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
+        #if os(iOS)
         .background(Color(.tertiarySystemBackground))
+        #else
+        .background(Color.gray.opacity(0.05))
+        #endif
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 
@@ -226,22 +251,33 @@ public struct SFSymbolCategoryPreview: View {
     ]
 
     public var body: some View {
+        #if os(iOS)
         NavigationStack {
-            List {
-                ForEach(categories, id: \.0) { category, symbols in
-                    Section(category) {
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 44))], spacing: 12) {
-                            ForEach(symbols, id: \.rawValue) { symbol in
-                                Icon.system(symbol, size: .lg)
-                                    .foregroundStyle(.primary)
-                            }
+            categoryList
+        }
+        #else
+        NavigationView {
+            categoryList
+        }
+        #endif
+    }
+
+    @ViewBuilder
+    private var categoryList: some View {
+        List {
+            ForEach(categories, id: \.0) { category, symbols in
+                Section(category) {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 44))], spacing: 12) {
+                        ForEach(symbols, id: \.rawValue) { symbol in
+                            Icon.system(symbol, size: .lg)
+                                .foregroundStyle(.primary)
                         }
-                        .padding(.vertical, 8)
                     }
+                    .padding(.vertical, 8)
                 }
             }
-            .navigationTitle("SF Symbols")
         }
+        .navigationTitle("SF Symbols")
     }
 }
 

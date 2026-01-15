@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A selectable option for DSSelect component
-public protocol DSSelectOption: Identifiable, Equatable {
+public protocol DSSelectOption: Identifiable, Equatable, Hashable {
     var id: String { get }
     var displayText: String { get }
 }

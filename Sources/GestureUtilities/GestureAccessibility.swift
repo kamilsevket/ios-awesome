@@ -249,7 +249,7 @@ public extension View {
 
     /// Announces a message to VoiceOver users when a gesture is performed.
     func announceGestureResult(_ message: String, when condition: Bool) -> some View {
-        self.onChange(of: condition) { _, newValue in
+        self.onChange(of: condition) { newValue in
             if newValue {
                 AccessibilityHelpers.announce(message)
             }

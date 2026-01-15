@@ -228,7 +228,7 @@ public enum SFSymbol: String, CaseIterable, Sendable {
     case gearshapeFill = "gearshape.fill"
     case gearshape2 = "gearshape.2"
     case gearshape2Fill = "gearshape.2.fill"
-    case slider3Horizontal = "slider.horizontal.3"
+    case slider3Horizontal = "slider.horizontal.3.fill"
     case wrench = "wrench"
     case wrenchFill = "wrench.fill"
     case hammer = "hammer"

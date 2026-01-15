@@ -9,17 +9,19 @@ public enum DSListStyle {
     case grouped
     case sidebar
 
+    /// Applies the appropriate SwiftUI list style to a view
     @available(iOS 14.0, *)
-    var swiftUIListStyle: some ListStyle {
+    @ViewBuilder
+    func apply<Content: View>(to content: Content) -> some View {
         switch self {
         case .plain:
-            return .plain
+            content.listStyle(.plain)
         case .insetGrouped:
-            return .insetGrouped
+            content.listStyle(.insetGrouped)
         case .grouped:
-            return .grouped
+            content.listStyle(.grouped)
         case .sidebar:
-            return .sidebar
+            content.listStyle(.sidebar)
         }
     }
 }
@@ -107,8 +109,7 @@ public struct DSList<Data: RandomAccessCollection, RowContent: View>: View where
     // MARK: - Body
 
     public var body: some View {
-        listContent
-            .listStyle(.plain)
+        listStyle.apply(to: listContent)
             .scrollContentBackground(.hidden)
             .background(backgroundColor)
             .environment(\.editMode, isEditMode ?? .constant(.inactive))

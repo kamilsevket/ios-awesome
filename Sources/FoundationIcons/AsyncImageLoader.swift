@@ -275,26 +275,29 @@ public struct CachedAsyncImage<Content: View>: View {
 
 // MARK: - CachedAsyncImage Convenience Initializers
 
-public extension CachedAsyncImage where Content == _ConditionalContent<_ConditionalContent<ProgressView<EmptyView, EmptyView>, Image>, Image> {
+public extension CachedAsyncImage {
     /// Creates a cached async image with default placeholder and failure views
     /// - Parameters:
     ///   - url: The URL to load the image from
     ///   - cache: The image cache to use (default: shared)
+    @_disfavoredOverload
     init(
         url: URL?,
         cache: ImageCache = .shared
-    ) {
+    ) where Content == AnyView {
         self.init(url: url, cache: cache) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-            case .success(let image):
-                image
-            case .failure:
-                Image(sfSymbol: .photo)
-            @unknown default:
-                Image(sfSymbol: .photo)
-            }
+            AnyView(Group {
+                switch phase {
+                case .empty:
+                    ProgressView()
+                case .success(let image):
+                    image
+                case .failure:
+                    Image(sfSymbol: .photo)
+                @unknown default:
+                    Image(sfSymbol: .photo)
+                }
+            })
         }
     }
 }

@@ -62,7 +62,11 @@ public struct Avatar: View {
     public var body: some View {
         avatarContent
             .frame(width: size.rawValue, height: size.rawValue)
+            #if os(iOS)
             .background(Color(.systemGray5))
+            #else
+            .background(Color.gray.opacity(0.2))
+            #endif
             .clipShape(avatarShape)
             .accessibilityLabel(accessibilityText)
             .accessibilityAddTraits(.isImage)
@@ -113,16 +117,28 @@ public struct Avatar: View {
             .foregroundColor(.gray)
     }
 
-    @ViewBuilder
-    private var avatarShape: some Shape {
+    private var avatarShape: AnyShape {
         switch shape {
         case .circle:
-            Circle()
+            return AnyShape(Circle())
         case .rounded:
-            RoundedRectangle(cornerRadius: shape.cornerRadius)
+            return AnyShape(RoundedRectangle(cornerRadius: shape.cornerRadius))
         case .square:
-            Rectangle()
+            return AnyShape(Rectangle())
         }
+    }
+}
+
+/// Type-erased shape wrapper
+public struct AnyShape: Shape {
+    private let _path: (CGRect) -> Path
+
+    public init<S: Shape>(_ shape: S) {
+        _path = shape.path(in:)
+    }
+
+    public func path(in rect: CGRect) -> Path {
+        _path(rect)
     }
 }
 

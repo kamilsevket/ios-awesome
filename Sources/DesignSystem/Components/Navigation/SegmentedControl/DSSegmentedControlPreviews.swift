@@ -10,7 +10,7 @@ enum PreviewFilter: String, CaseIterable {
     case completed = "Completed"
 }
 
-enum PreviewTab: String, CaseIterable {
+enum PreviewTimePeriod: String, CaseIterable {
     case day = "Day"
     case week = "Week"
     case month = "Month"
@@ -54,7 +54,7 @@ struct DSSegmentedControl_Previews: PreviewProvider {
     // MARK: - Pill Style Preview
 
     struct PillStylePreview: View {
-        @State private var selection: PreviewTab = .week
+        @State private var selection: PreviewTimePeriod = .week
 
         var body: some View {
             VStack(spacing: 24) {
@@ -308,7 +308,7 @@ struct DSSegmentedControl_Previews: PreviewProvider {
 /// A comprehensive demo view showcasing all segmented control features
 public struct DSSegmentedControlDemoView: View {
     @State private var filterSelection: PreviewFilter = .all
-    @State private var tabSelection: PreviewTab = .week
+    @State private var tabSelection: PreviewTimePeriod = .week
     @State private var viewModeSelection: PreviewViewMode = .list
     @State private var style: DSSegmentedControlStyle = .standard
 

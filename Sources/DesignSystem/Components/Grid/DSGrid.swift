@@ -135,13 +135,6 @@ public struct DSGrid<Data: RandomAccessCollection, Content: View>: View where Da
                 selection = [itemId]
             }
 
-        case .multiple:
-            if selection.contains(itemId) {
-                selection.remove(itemId)
-            } else {
-                selection.insert(itemId)
-            }
-
         case .multiple(let max):
             if selection.contains(itemId) {
                 selection.remove(itemId)
@@ -157,7 +150,7 @@ public struct DSGrid<Data: RandomAccessCollection, Content: View>: View where Da
             return ""
         case .single:
             return isSelected ? "Tap to deselect" : "Tap to select"
-        case .multiple, .multiple:
+        case .multiple:
             return isSelected ? "Tap to deselect" : "Tap to add to selection"
         }
     }

@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// A customizable text field component with validation support
 public struct CustomTextField: View {
@@ -7,12 +10,15 @@ public struct CustomTextField: View {
     private let label: String?
     private let errorMessage: String?
     private let isSecure: Bool
+    #if canImport(UIKit)
     private let keyboardType: UIKeyboardType
+    #endif
     private let validator: ((String) -> Bool)?
 
     @State private var isValid: Bool = true
     @State private var isFocused: Bool = false
 
+    #if canImport(UIKit)
     public init(
         text: Binding<String>,
         placeholder: String,
@@ -30,6 +36,23 @@ public struct CustomTextField: View {
         self.keyboardType = keyboardType
         self.validator = validator
     }
+    #else
+    public init(
+        text: Binding<String>,
+        placeholder: String,
+        label: String? = nil,
+        errorMessage: String? = nil,
+        isSecure: Bool = false,
+        validator: ((String) -> Bool)? = nil
+    ) {
+        self._text = text
+        self.placeholder = placeholder
+        self.label = label
+        self.errorMessage = errorMessage
+        self.isSecure = isSecure
+        self.validator = validator
+    }
+    #endif
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -46,10 +69,16 @@ public struct CustomTextField: View {
                     TextField(placeholder, text: $text)
                 }
             }
+            #if canImport(UIKit)
             .keyboardType(keyboardType)
+            #endif
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
+            #if os(iOS)
             .background(Color(.systemGray6))
+            #else
+            .background(Color.gray.opacity(0.1))
+            #endif
             .cornerRadius(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)

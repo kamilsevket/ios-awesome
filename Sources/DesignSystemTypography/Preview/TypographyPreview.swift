@@ -248,7 +248,11 @@ public struct TypographyComparisonPreview: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
+        #if os(iOS)
         .background(Color(.systemGray6))
+        #else
+        .background(Color.gray.opacity(0.1))
+        #endif
         .cornerRadius(12)
     }
 }

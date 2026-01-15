@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 // MARK: - UIEdgeInsets Extensions
@@ -351,3 +352,4 @@ extension UITextField {
         setRightPadding(token)
     }
 }
+#endif

@@ -155,13 +155,6 @@ public struct DSMasonryGrid<Data: RandomAccessCollection, Content: View>: View w
                 selection = [itemId]
             }
 
-        case .multiple:
-            if selection.contains(itemId) {
-                selection.remove(itemId)
-            } else {
-                selection.insert(itemId)
-            }
-
         case .multiple(let max):
             if selection.contains(itemId) {
                 selection.remove(itemId)
