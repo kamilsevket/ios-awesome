@@ -13,3 +13,14 @@
 // - DSFilterChip: Single-selection filter chip
 // - DSSelectableChip: Multi-selection chip
 // - View+Badge: Badge overlay modifiers
+
+// MARK: - Feedback Components
+// - DSToast: Simple message toast
+// - DSSnackbar: Toast with action button
+// - DSToastManager: Queue management singleton
+// - DSToastContainerView: Container for displaying toasts
+// - DSToastType: Toast type enum (success, error, warning, info)
+// - DSToastDuration: Duration configuration (short, long, indefinite)
+// - DSToastPosition: Position configuration (top, bottom)
+// - DSToastItem: Toast item model
+// - View.toastContainer(): View modifier for toast support

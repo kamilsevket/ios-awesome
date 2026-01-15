@@ -25,4 +25,9 @@ public enum DSColors {
     public static let warning = Color(red: 1.0, green: 0.76, blue: 0.03)
     public static let error = Color(red: 0.94, green: 0.27, blue: 0.27)
     public static let info = Color(red: 0.35, green: 0.68, blue: 0.98)
+
+    // MARK: - Text Colors
+    public static let textPrimary = Color(red: 0.11, green: 0.11, blue: 0.12)
+    public static let textSecondary = Color(red: 0.45, green: 0.45, blue: 0.50)
+    public static let textInverse = Color(red: 1.0, green: 1.0, blue: 1.0)
 }
