@@ -284,23 +284,6 @@ public struct DSIconButton: View {
     }
 }
 
-// MARK: - AnyShape Helper
-
-/// Type-erased shape for conditional shape usage
-private struct AnyShape: Shape {
-    private let pathBuilder: (CGRect) -> Path
-
-    init<S: Shape>(_ shape: S) {
-        pathBuilder = { rect in
-            shape.path(in: rect)
-        }
-    }
-
-    func path(in rect: CGRect) -> Path {
-        pathBuilder(rect)
-    }
-}
-
 // MARK: - Convenience Initializers
 
 extension DSIconButton {

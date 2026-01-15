@@ -1,5 +1,15 @@
 import SwiftUI
 
+// MARK: - Toast Container Constants
+
+private enum ToastContainerConstants {
+    static let dismissThreshold: CGFloat = 50
+    static let horizontalPadding: CGFloat = 16
+    static let safeAreaPadding: CGFloat = 8
+    static let maxDragOpacity: CGFloat = 1.0
+    static let minDragOpacity: CGFloat = 0.3
+}
+
 // MARK: - DSToastContainerView
 
 /// Container view for displaying toasts with swipe-to-dismiss functionality
@@ -26,16 +36,6 @@ public struct DSToastContainerView<Content: View>: View {
 
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging = false
-
-    // MARK: - Constants
-
-    private enum Constants {
-        static let dismissThreshold: CGFloat = 50
-        static let horizontalPadding: CGFloat = 16
-        static let safeAreaPadding: CGFloat = 8
-        static let maxDragOpacity: CGFloat = 1.0
-        static let minDragOpacity: CGFloat = 0.3
-    }
 
     // MARK: - Initialization
 
@@ -68,10 +68,10 @@ public struct DSToastContainerView<Content: View>: View {
                 }
 
                 toastView(for: toast)
-                    .padding(.horizontal, Constants.horizontalPadding)
+                    .padding(.horizontal, ToastContainerConstants.horizontalPadding)
                     .padding(
                         toastManager.position == .top ? .top : .bottom,
-                        Constants.safeAreaPadding + safeAreaInset(for: geometry)
+                        ToastContainerConstants.safeAreaPadding + safeAreaInset(for: geometry)
                     )
                     .offset(y: calculateOffset())
                     .opacity(calculateOpacity())
@@ -137,7 +137,7 @@ public struct DSToastContainerView<Content: View>: View {
             .onEnded { value in
                 isDragging = false
                 let velocity = abs(value.predictedEndTranslation.height)
-                let shouldDismiss = abs(dragOffset) > Constants.dismissThreshold || velocity > 200
+                let shouldDismiss = abs(dragOffset) > ToastContainerConstants.dismissThreshold || velocity > 200
 
                 if shouldDismiss {
                     withAnimation(.easeOut(duration: 0.2)) {
@@ -160,7 +160,7 @@ public struct DSToastContainerView<Content: View>: View {
 
     private func calculateOpacity() -> Double {
         let progress = abs(dragOffset) / 100
-        return max(Constants.minDragOpacity, Constants.maxDragOpacity - progress * 0.5)
+        return max(ToastContainerConstants.minDragOpacity, ToastContainerConstants.maxDragOpacity - progress * 0.5)
     }
 
     private func safeAreaInset(for geometry: GeometryProxy) -> CGFloat {

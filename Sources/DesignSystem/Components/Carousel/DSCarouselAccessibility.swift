@@ -33,42 +33,6 @@ public enum DSCarouselAccessibility {
     }
 }
 
-// MARK: - Reduce Motion Helper
-
-/// Helper for handling reduce motion preference.
-public struct DSReduceMotionModifier: ViewModifier {
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    private let duration: Double
-    private let reducedDuration: Double
-
-    public init(duration: Double = 0.3, reducedDuration: Double = 0.0) {
-        self.duration = duration
-        self.reducedDuration = reducedDuration
-    }
-
-    public func body(content: Content) -> some View {
-        content
-            .animation(
-                reduceMotion ? .linear(duration: reducedDuration) : .spring(response: duration),
-                value: UUID()
-            )
-    }
-}
-
-extension View {
-    /// Applies animation that respects the reduce motion accessibility setting.
-    /// - Parameters:
-    ///   - duration: Animation duration when reduce motion is off
-    ///   - reducedDuration: Animation duration when reduce motion is on (0 for instant)
-    public func dsReduceMotionAnimation(
-        duration: Double = 0.3,
-        reducedDuration: Double = 0.0
-    ) -> some View {
-        modifier(DSReduceMotionModifier(duration: duration, reducedDuration: reducedDuration))
-    }
-}
-
 // MARK: - Carousel Accessibility Modifier
 
 /// A view modifier that adds comprehensive accessibility support to carousels.
@@ -130,31 +94,6 @@ extension View {
             onPrevious: onPrevious,
             onNext: onNext
         ))
-    }
-}
-
-// MARK: - VoiceOver Announcement
-
-extension View {
-    /// Announces a message to VoiceOver users.
-    /// - Parameter message: The message to announce
-    public func dsAnnounce(_ message: String) -> some View {
-        self.onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                UIAccessibility.post(notification: .announcement, argument: message)
-            }
-        }
-    }
-
-    /// Announces page change to VoiceOver users.
-    /// - Parameters:
-    ///   - currentPage: Current page number (0-based)
-    ///   - totalPages: Total number of pages
-    public func dsAnnouncePageChange(currentPage: Int, totalPages: Int) -> some View {
-        self.onChange(of: currentPage) { _, newValue in
-            let message = "Page \(newValue + 1) of \(totalPages)"
-            UIAccessibility.post(notification: .pageScrolled, argument: message)
-        }
     }
 }
 
