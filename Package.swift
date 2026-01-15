@@ -40,6 +40,10 @@ let package = Package(
             name: "ShowcaseApp",
             targets: ["ShowcaseApp"]
         ),
+        .library(
+            name: "SampleApp",
+            targets: ["SampleApp"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.15.0")
@@ -90,6 +94,19 @@ let package = Package(
                 "GestureUtilities"
             ],
             path: "Sources/ShowcaseApp"
+        ),
+
+        // SampleApp target - Comprehensive demo of all components
+        .target(
+            name: "SampleApp",
+            dependencies: [
+                "DesignSystem",
+                "FoundationColor",
+                "DesignSystemTypography",
+                "FoundationIcons",
+                "GestureUtilities"
+            ],
+            path: "Sources/SampleApp"
         ),
 
         // Design System test targets
