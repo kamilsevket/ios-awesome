@@ -75,4 +75,22 @@ final class DSColorsTests: XCTestCase {
     func testInfoColor() {
         XCTAssertNotNil(DSColors.info)
     }
+
+    // MARK: - Loading Colors Tests
+
+    func testLoadingTrackColor() {
+        XCTAssertNotNil(DSColors.loadingTrack)
+    }
+
+    func testLoadingTrackDarkColor() {
+        XCTAssertNotNil(DSColors.loadingTrackDark)
+    }
+
+    func testShimmerBaseColor() {
+        XCTAssertNotNil(DSColors.shimmerBase)
+    }
+
+    func testShimmerHighlightColor() {
+        XCTAssertNotNil(DSColors.shimmerHighlight)
+    }
 }
