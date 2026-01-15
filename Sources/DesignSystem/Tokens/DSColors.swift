@@ -58,6 +58,10 @@ public enum DSColors {
     public static let shimmerBase = Color(UIColor.systemGray5)
     public static let shimmerHighlight = Color(UIColor.systemGray6)
 
+    // MARK: - Empty State Colors
+    public static let emptyStateIcon = Color(red: 0.60, green: 0.60, blue: 0.65)
+    public static let emptyStateIconDark = Color(red: 0.55, green: 0.55, blue: 0.60)
+
     // MARK: - Selection Control Colors
     public static let selectionUnchecked = Color(UIColor.systemBackground)
     public static let selectionBorder = Color(UIColor.systemGray3)
