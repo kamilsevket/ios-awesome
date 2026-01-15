@@ -65,3 +65,42 @@ public typealias ToggleSize = DSToggleSize
 // - DSPickerStyle: Picker style configurations
 // - DSDateFormatters: Date formatting utilities
 // - DSDateTemplate: Common date format templates
+
+// MARK: - Overlay Components
+// - DSPopover: Attached popover with arrow positioning
+// - DSPopoverEdge: Edge enum for popover positioning (top, bottom, leading, trailing)
+// - DSPopoverStyle: Style configuration for popovers
+// - View.dsPopover(): View modifier for popover presentation
+//
+// - DSTooltip: Information tooltip with delay support
+// - DSTooltipEdge: Edge enum for tooltip positioning
+// - DSTooltipStyle: Style configuration for tooltips (default, info, warning, error)
+// - View.dsTooltip(): View modifier for tooltip presentation
+//
+// - DSContextMenu: Styled context menu wrapper
+// - DSMenuItem: Menu item with icon and role support
+// - DSMenuSection: Section for grouping menu items
+// - DSContextMenuButton: Button that shows menu on tap
+// - View.dsContextMenu(): View modifier for context menu
+//
+// - DSActionSheet: Custom action sheet with rich styling
+// - DSActionSheetAction: Action configuration for action sheets
+// - DSActionSheetStyle: Style configuration for action sheets
+// - View.dsActionSheet(): View modifier for action sheet presentation
+
+/// Overlay type aliases for convenience
+public typealias Popover = DSPopover
+public typealias PopoverEdge = DSPopoverEdge
+public typealias PopoverStyle = DSPopoverStyle
+
+public typealias Tooltip = DSTooltip
+public typealias TooltipEdge = DSTooltipEdge
+public typealias TooltipStyle = DSTooltipStyle
+
+public typealias MenuItem = DSMenuItem
+public typealias MenuSection = DSMenuSection
+public typealias ContextMenuButton = DSContextMenuButton
+
+public typealias ActionSheet = DSActionSheet
+public typealias ActionSheetAction = DSActionSheetAction
+public typealias ActionSheetStyle = DSActionSheetStyle
