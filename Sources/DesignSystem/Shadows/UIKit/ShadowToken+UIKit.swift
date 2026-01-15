@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 // MARK: - UIKit Shadow Extensions
@@ -118,3 +119,4 @@ public struct UIShadowConfiguration {
         layer.shadowOffset = offset
     }
 }
+#endif
