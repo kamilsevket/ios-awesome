@@ -209,10 +209,12 @@ public struct HapticButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .onChange(of: configuration.isPressed) { isPressed in
-                if isPressed {
-                    HapticManager.shared.trigger(pressedStyle)
-                } else if let style = releasedStyle {
-                    HapticManager.shared.trigger(style)
+                Task { @MainActor in
+                    if isPressed {
+                        HapticManager.shared.trigger(pressedStyle)
+                    } else if let style = releasedStyle {
+                        HapticManager.shared.trigger(style)
+                    }
                 }
             }
     }
@@ -240,7 +242,9 @@ public extension View {
     /// Triggers haptic feedback immediately.
     func triggerHaptic(_ style: HapticStyle) -> some View {
         self.onAppear {
-            HapticManager.shared.trigger(style)
+            Task { @MainActor in
+                HapticManager.shared.trigger(style)
+            }
         }
     }
 }

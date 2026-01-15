@@ -1,4 +1,7 @@
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 /// A customizable card component for displaying content
 public struct Card<Content: View>: View {
@@ -14,8 +17,13 @@ public struct Card<Content: View>: View {
 
         var backgroundColor: Color {
             switch self {
+            #if os(iOS)
             case .elevated, .outlined: return Color(.systemBackground)
             case .filled: return Color(.systemGray6)
+            #else
+            case .elevated, .outlined: return Color(NSColor.windowBackgroundColor)
+            case .filled: return Color.gray.opacity(0.1)
+            #endif
             }
         }
 
@@ -66,7 +74,11 @@ public struct Card<Content: View>: View {
             .shadow(color: .black.opacity(0.1), radius: style.shadowRadius, x: 0, y: 2)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
+                    #if os(iOS)
                     .stroke(Color(.systemGray4), lineWidth: style.borderWidth)
+                    #else
+                    .stroke(Color.gray.opacity(0.3), lineWidth: style.borderWidth)
+                    #endif
             )
     }
 }

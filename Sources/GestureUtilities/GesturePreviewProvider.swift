@@ -184,7 +184,7 @@ struct DoubleTapGesturePreview: View {
                 }
             }
             .doubleTapToggle($isFavorite)
-            .onChange(of: isFavorite) { _, _ in
+            .onChange(of: isFavorite) { _ in
                 showHeart = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     showHeart = false

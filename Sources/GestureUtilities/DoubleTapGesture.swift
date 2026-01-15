@@ -172,7 +172,9 @@ public struct DoubleTapLocationModifier: ViewModifier {
             lastTapTime = nil
 
             if configuration.hapticFeedback {
-                HapticManager.shared.trigger(configuration.hapticStyle)
+                Task { @MainActor in
+                    HapticManager.shared.trigger(configuration.hapticStyle)
+                }
             }
 
             action(location)
