@@ -107,7 +107,7 @@ public struct LongPressGestureModifier: ViewModifier {
                         action()
                     }
             )
-            .onChange(of: isPressed) { _, newValue in
+            .onChange(of: isPressed) { newValue in
                 if newValue {
                     if configuration.hapticOnStart {
                         HapticManager.shared.trigger(.light)
@@ -245,7 +245,7 @@ public struct LongPressStateModifier: ViewModifier {
                         }
                     }
             )
-            .onChange(of: isDetecting) { _, newValue in
+            .onChange(of: isDetecting) { newValue in
                 state = newValue ? .pressing : .inactive
             }
             .accessibilityAction(named: "Long press") {

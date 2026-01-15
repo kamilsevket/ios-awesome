@@ -305,7 +305,7 @@ public struct GestureStateBinding<Value: Equatable>: DynamicProperty {
 // MARK: - Environment Key for Gesture State
 
 private struct GestureStateManagerKey: EnvironmentKey {
-    static let defaultValue = GestureStateManager()
+    @MainActor static let defaultValue = GestureStateManager()
 }
 
 public extension EnvironmentValues {
