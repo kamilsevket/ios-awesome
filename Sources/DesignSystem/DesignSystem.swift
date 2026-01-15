@@ -199,3 +199,44 @@ public typealias AdaptiveMasonryGrid = DSAdaptiveMasonryGrid
 public typealias CollectionView = DSCollectionView
 public typealias CollectionLayout = DSCollectionLayout
 public typealias SectionedCollectionView = DSSectionedCollectionView
+
+// MARK: - Animation Utilities
+// - Transition+Extensions: Design System transition presets (fadeIn, fadeOut, slideUp, slideDown, etc.)
+// - Animation+Extensions: Spring presets (gentle, snappy, bouncy, stiff, interactive)
+// - KeyframeAnimation: Multi-step keyframe animations (shake, bounce, pulse, wiggle, heartbeat)
+// - DSLottieView: Lottie animation wrapper with loop modes and state management
+// - AnimationPresets: Enum-based animation presets with reduce motion support
+// - WithAnimationHelpers: Convenient animation execution helpers
+// - DSAnimations: Namespace for animation helper functions
+// - DSAnimationStateManager: Helper class to manage animation states
+//
+// Spring Presets:
+// - Animation.ds.spring.gentle: Soft and slow (response: 0.5, damping: 0.8)
+// - Animation.ds.spring.snappy: Quick and responsive (response: 0.3, damping: 0.7)
+// - Animation.ds.spring.bouncy: Playful with overshoot (response: 0.4, damping: 0.5)
+// - Animation.ds.spring.stiff: Very quick, minimal bounce (response: 0.2, damping: 0.9)
+// - Animation.ds.spring.interactive: For gesture-driven animations (response: 0.15, damping: 0.86)
+//
+// Transition Presets:
+// - AnyTransition.ds.fadeIn, fadeOut, fadeQuick, fadeSlow
+// - AnyTransition.ds.slideUp, slideDown, slideLeft, slideRight
+// - AnyTransition.ds.scale, scaleFromZero, bounce, popIn
+// - AnyTransition.ds.modal, toast, snackbar
+//
+// View Modifiers:
+// - View.dsShake(): Apply shake animation
+// - View.dsBounce(): Apply bounce animation
+// - View.dsPulse(): Apply pulse animation
+// - View.dsWiggle(): Apply wiggle animation
+// - View.dsHeartbeat(): Apply heartbeat animation
+// - View.dsTransition(): Apply DS transition with reduce motion support
+// - View.dsAnimation(): Apply DS animation with reduce motion support
+
+/// Animation type aliases for convenience
+public typealias AnimationPreset = DSAnimationPreset
+public typealias SpringPreset = DSSpringPreset
+public typealias EasingPreset = DSEasingPreset
+public typealias LottieLoopMode = DSLottieLoopMode
+public typealias LottieContentMode = DSLottieContentMode
+public typealias LottieView = DSLottieView
+public typealias AnimationStateManager = DSAnimationStateManager
