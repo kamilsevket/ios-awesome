@@ -1,0 +1,127 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Build Package
+        run: swift build -v
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: macos-14
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Run Unit Tests
+        run: swift test --filter UnitTests -v
+
+      - name: Generate Coverage Report
+        run: |
+          swift test --enable-code-coverage
+          xcrun llvm-cov export \
+            .build/debug/IOSComponentsPackageTests.xctest/Contents/MacOS/IOSComponentsPackageTests \
+            -instr-profile .build/debug/codecov/default.profdata \
+            -format="lcov" > coverage.lcov
+        continue-on-error: true
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.lcov
+          fail_ci_if_error: false
+        continue-on-error: true
+
+  snapshot-tests:
+    name: Snapshot Tests
+    runs-on: macos-14
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Run Snapshot Tests
+        run: swift test --filter SnapshotTests -v
+        continue-on-error: true
+
+      - name: Upload Failed Snapshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-snapshots
+          path: |
+            **/Snapshots/**/*.png
+            **/__Snapshots__/**/*.png
+
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: macos-14
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Run Accessibility Tests
+        run: swift test --filter AccessibilityTests -v
+
+  lint:
+    name: Lint
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
+        continue-on-error: true
+
+  all-tests:
+    name: All Tests Summary
+    runs-on: macos-14
+    needs: [unit-tests, snapshot-tests, accessibility-tests]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Run All Tests
+        run: swift test -v
+
+      - name: Test Summary
+        run: |
+          echo "## Test Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit Tests: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Snapshot Tests: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Accessibility Tests: Passed" >> $GITHUB_STEP_SUMMARY

@@ -32,8 +32,16 @@ let package = Package(
             name: "GestureUtilities",
             targets: ["GestureUtilities"]
         ),
+        .library(
+            name: "IOSComponents",
+            targets: ["IOSComponents"]
+        ),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.15.0")
     ],
     targets: [
+        // Design System targets
         .target(
             name: "DesignSystem",
             path: "Sources/DesignSystem"
@@ -56,6 +64,18 @@ let package = Package(
                 .process("Resources")
             ]
         ),
+        .target(
+            name: "GestureUtilities"
+        ),
+
+        // IOSComponents target
+        .target(
+            name: "IOSComponents",
+            dependencies: [],
+            path: "Sources/IOSComponents"
+        ),
+
+        // Design System test targets
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"],
@@ -73,12 +93,34 @@ let package = Package(
             name: "FoundationIconsTests",
             dependencies: ["FoundationIcons"]
         ),
-        .target(
-            name: "GestureUtilities"
-        ),
         .testTarget(
             name: "GestureUtilitiesTests",
             dependencies: ["GestureUtilities"]
+        ),
+
+        // IOSComponents test targets
+        .testTarget(
+            name: "UnitTests",
+            dependencies: ["IOSComponents"],
+            path: "Tests/UnitTests"
+        ),
+        .testTarget(
+            name: "SnapshotTests",
+            dependencies: [
+                "IOSComponents",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ],
+            path: "Tests/SnapshotTests"
+        ),
+        .testTarget(
+            name: "UITests",
+            dependencies: ["IOSComponents"],
+            path: "Tests/UITests"
+        ),
+        .testTarget(
+            name: "AccessibilityTests",
+            dependencies: ["IOSComponents"],
+            path: "Tests/AccessibilityTests"
         ),
     ]
 )
