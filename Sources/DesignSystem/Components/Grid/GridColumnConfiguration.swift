@@ -143,32 +143,11 @@ public enum DSGridSelectionMode: Equatable, Sendable {
     /// Single item selection
     case single
 
-    /// Multiple item selection
-    case multiple
-
     /// Multiple selection with maximum count
     case multiple(max: Int)
 
-    public static func == (lhs: DSGridSelectionMode, rhs: DSGridSelectionMode) -> Bool {
-        switch (lhs, rhs) {
-        case (.none, .none), (.single, .single):
-            return true
-        case (.multiple(let lhsMax), .multiple(let rhsMax)):
-            return lhsMax == rhsMax
-        case (.multiple, .multiple) where lhsMax(lhs) == nil && rhsMax(rhs) == nil:
-            return true
-        default:
-            return false
-        }
-    }
-
-    private static func lhsMax(_ mode: DSGridSelectionMode) -> Int? {
-        if case .multiple(let max) = mode { return max }
-        return nil
-    }
-
-    private static func rhsMax(_ mode: DSGridSelectionMode) -> Int? {
-        if case .multiple(let max) = mode { return max }
-        return nil
+    /// Multiple item selection with no limit
+    public static var multiple: DSGridSelectionMode {
+        .multiple(max: Int.max)
     }
 }

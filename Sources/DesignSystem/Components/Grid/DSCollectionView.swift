@@ -345,8 +345,8 @@ public struct DSSectionedCollectionView<Section: Identifiable & Hashable, Item: 
         sections: [(section: Section, items: [Item])],
         layout: DSCollectionLayout = .grid(columns: 2),
         @ViewBuilder cellProvider: @escaping (Item) -> Cell,
-        @ViewBuilder headerProvider: ((Section) -> Header)? = nil,
-        @ViewBuilder footerProvider: ((Section) -> Footer)? = nil,
+        headerProvider: ((Section) -> Header)? = nil,
+        footerProvider: ((Section) -> Footer)? = nil,
         onSelect: ((Item) -> Void)? = nil
     ) {
         self.sections = sections
@@ -461,7 +461,7 @@ extension DSSectionedCollectionView where Header == EmptyView {
         sections: [(section: Section, items: [Item])],
         layout: DSCollectionLayout = .grid(columns: 2),
         @ViewBuilder cellProvider: @escaping (Item) -> Cell,
-        @ViewBuilder footerProvider: ((Section) -> Footer)? = nil,
+        footerProvider: ((Section) -> Footer)? = nil,
         onSelect: ((Item) -> Void)? = nil
     ) {
         self.sections = sections
@@ -478,7 +478,7 @@ extension DSSectionedCollectionView where Footer == EmptyView {
         sections: [(section: Section, items: [Item])],
         layout: DSCollectionLayout = .grid(columns: 2),
         @ViewBuilder cellProvider: @escaping (Item) -> Cell,
-        @ViewBuilder headerProvider: ((Section) -> Header)? = nil,
+        headerProvider: ((Section) -> Header)? = nil,
         onSelect: ((Item) -> Void)? = nil
     ) {
         self.sections = sections

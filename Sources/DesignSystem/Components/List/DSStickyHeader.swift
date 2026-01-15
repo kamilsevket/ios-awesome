@@ -162,35 +162,6 @@ public extension DSStickyHeader {
     }
 }
 
-// MARK: - Blur View
-
-#if os(iOS)
-private struct BlurView: UIViewRepresentable {
-    let style: UIBlurEffect.Style
-
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        UIVisualEffectView(effect: UIBlurEffect(style: style))
-    }
-
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
-    }
-}
-#else
-private struct BlurView: View {
-    let style: Any
-
-    init(style: Any) {
-        self.style = style
-    }
-
-    var body: some View {
-        Color.clear
-            .background(.ultraThinMaterial)
-    }
-}
-#endif
-
 // MARK: - Sticky Header List
 
 /// A list component with built-in sticky header support
