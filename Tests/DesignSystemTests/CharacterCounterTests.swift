@@ -1,6 +1,6 @@
 import XCTest
 import SwiftUI
-@testable import DSTextField
+@testable import DesignSystem
 
 final class CharacterCounterTests: XCTestCase {
 

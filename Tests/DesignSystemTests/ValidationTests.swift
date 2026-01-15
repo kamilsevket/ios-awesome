@@ -1,5 +1,5 @@
 import XCTest
-@testable import DSTextField
+@testable import DesignSystem
 
 final class ValidationTests: XCTestCase {
 
