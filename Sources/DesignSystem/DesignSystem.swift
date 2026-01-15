@@ -104,3 +104,57 @@ public typealias ContextMenuButton = DSContextMenuButton
 public typealias ActionSheet = DSActionSheet
 public typealias ActionSheetAction = DSActionSheetAction
 public typealias ActionSheetStyle = DSActionSheetStyle
+
+// MARK: - List Components
+// - DSList: Customizable list wrapper with enhanced styling
+// - DSListStyle: List style variants (plain, insetGrouped, grouped, sidebar)
+// - DSSeparatorStyle: Separator style variants (none, singleLine, singleLineInset)
+//
+// - DSSwipeAction: Swipe action configuration
+// - DSSwipeActionRole: Swipe action semantic roles (destructive, cancel, none)
+// - DSSwipeActionsModifier: Modifier for adding swipe actions
+// - View.dsSwipeActions(): View modifier for swipe actions
+// - View.dsDeleteAction(): Convenience modifier for delete action
+//
+// - DSReorderableList: List with drag-to-reorder support
+// - DSReorderHandleStyle: Reorder handle styles (none, standard, custom)
+//
+// - DSSection: Section with customizable header/footer
+// - DSSectionHeader: Styled section header
+// - DSSectionFooter: Styled section footer
+// - DSSectionHeaderStyle: Header styles (plain, prominent, uppercase)
+// - TextTransform: Text transformation options
+//
+// - DSStickyHeader: Sticky header for scroll views
+// - DSStickyHeaderStyle: Sticky header styles (standard, blurred, solid)
+// - DSStickyHeaderList: List with built-in sticky headers
+//
+// - DSPaginatedList: List with infinite scroll support
+// - DSPaginationState: Pagination state (idle, loading, loaded, error, finished)
+// - DSPaginationConfig: Pagination configuration options
+// - DSInfiniteScrollModifier: Modifier for infinite scroll behavior
+// - View.dsInfiniteScroll(): View modifier for infinite scroll
+
+/// List type aliases for convenience
+public typealias List = DSList
+public typealias ListStyle = DSListStyle
+public typealias SeparatorStyle = DSSeparatorStyle
+
+public typealias SwipeAction = DSSwipeAction
+public typealias SwipeActionRole = DSSwipeActionRole
+
+public typealias ReorderableList = DSReorderableList
+public typealias ReorderHandleStyle = DSReorderHandleStyle
+
+public typealias Section = DSSection
+public typealias SectionHeader = DSSectionHeader
+public typealias SectionFooter = DSSectionFooter
+public typealias SectionHeaderStyle = DSSectionHeaderStyle
+
+public typealias StickyHeader = DSStickyHeader
+public typealias StickyHeaderStyle = DSStickyHeaderStyle
+public typealias StickyHeaderList = DSStickyHeaderList
+
+public typealias PaginatedList = DSPaginatedList
+public typealias PaginationState = DSPaginationState
+public typealias PaginationConfig = DSPaginationConfig
