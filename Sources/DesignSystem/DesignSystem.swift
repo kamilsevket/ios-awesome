@@ -24,6 +24,16 @@
 // - DSToastPosition: Position configuration (top, bottom)
 // - DSToastItem: Toast item model
 // - View.toastContainer(): View modifier for toast support
+// - DSEmptyState: Empty/placeholder state component
+// - DSEmptyStateType: Type enum (empty, error, noResults, offline, custom)
+// - DSEmptyStateSize: Size variants (small, medium, large)
+// - DSEmptyStateAction: Action button configuration
+// - DSEmptyStateActionStyle: Action button styles (primary, secondary)
+//
+// Factory methods available:
+// - DSEmptyState.error(): Creates an error state
+// - DSEmptyState.noResults(): Creates a no results state
+// - DSEmptyState.offline(): Creates an offline state
 
 // MARK: - Picker Components
 // - DSDatePicker: Styled date picker wrapper
