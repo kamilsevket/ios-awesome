@@ -148,7 +148,7 @@ public struct DSCheckbox: View {
 
     public var body: some View {
         Button(action: toggle) {
-            HStack(spacing: DSSpacing.sm) {
+            HStack(spacing: Spacing.sm) {
                 if labelPosition == .leading, let label {
                     labelView(label)
                 }
@@ -159,7 +159,7 @@ public struct DSCheckbox: View {
                     labelView(label)
                 }
             }
-            .frame(minHeight: DSTouchTarget.minimum)
+            .frame(minHeight: DSSpacing.minTouchTarget)
         }
         .buttonStyle(.plain)
         .disabled(isDisabled)
@@ -282,7 +282,7 @@ private struct CheckboxPreviewContainer: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DSSpacing.xl) {
+            VStack(alignment: .leading, spacing: Spacing.xl) {
                 Group {
                     Text("Basic Checkbox")
                         .font(.headline)

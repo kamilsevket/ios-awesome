@@ -147,7 +147,7 @@ public struct DSRadioButton<Value: Hashable>: View {
 
     public var body: some View {
         Button(action: select) {
-            HStack(spacing: DSSpacing.sm) {
+            HStack(spacing: Spacing.sm) {
                 if labelPosition == .leading, let label {
                     labelView(label)
                 }
@@ -158,7 +158,7 @@ public struct DSRadioButton<Value: Hashable>: View {
                     labelView(label)
                 }
             }
-            .frame(minHeight: DSTouchTarget.minimum)
+            .frame(minHeight: DSSpacing.minTouchTarget)
         }
         .buttonStyle(.plain)
         .disabled(isDisabled)
@@ -245,7 +245,7 @@ private struct RadioButtonPreviewContainer: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DSSpacing.xl) {
+            VStack(alignment: .leading, spacing: Spacing.xl) {
                 Group {
                     Text("Basic Radio Buttons")
                         .font(.headline)

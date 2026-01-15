@@ -94,6 +94,6 @@ final class DSToggleTests: XCTestCase {
 
     func testMinimumTouchTarget() {
         // Verify the minimum touch target constant
-        XCTAssertEqual(DSTouchTarget.minimum, 44)
+        XCTAssertEqual(DSSpacing.minTouchTarget, 44)
     }
 }

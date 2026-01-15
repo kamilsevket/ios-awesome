@@ -1,49 +1,38 @@
 // DesignSystem
-// A comprehensive iOS design system library
+// A comprehensive SwiftUI component library
 
-/// Design System main entry point
-///
-/// This module provides a collection of reusable UI components for building
-/// consistent and accessible iOS applications.
-///
-/// ## Selection Controls
-///
-/// The selection control components include:
-/// - ``DSCheckbox``: A checkbox with support for checked, unchecked, and indeterminate states
-/// - ``DSRadioButton``: A radio button for single selection
-/// - ``DSRadioGroup``: A container for grouping radio buttons
-/// - ``DSToggle``: A toggle/switch for on/off states
-///
-/// ## Usage Example
-///
-/// ```swift
-/// import DesignSystem
-///
-/// struct SettingsView: View {
-///     @State private var agreeTerms = false
-///     @State private var notifications = true
-///     @State private var selectedTheme: Theme = .system
-///
-///     var body: some View {
-///         VStack {
-///             DSCheckbox(isChecked: $agreeTerms, label: "I agree to the terms")
-///
-///             DSToggle(isOn: $notifications, label: "Push notifications")
-///
-///             DSRadioGroup(selection: $selectedTheme) {
-///                 DSRadio(.light, "Light")
-///                 DSRadio(.dark, "Dark")
-///                 DSRadio(.system, "System")
-///             }
-///         }
-///     }
-/// }
-/// ```
+@_exported import SwiftUI
 
-// Re-export all public types
-@_exported import struct SwiftUI.Color
+// Re-export all public components for easy access
+// Usage: import DesignSystem
 
-// Selection Controls
+// MARK: - Badge Components
+// - DSBadge: Notification count badge
+// - DSStatusBadge: Status indicator (online, offline, etc.)
+// - DSTag: Label/tag component
+// - DSFilterChip: Single-selection filter chip
+// - DSSelectableChip: Multi-selection chip
+// - View+Badge: Badge overlay modifiers
+
+// MARK: - Feedback Components
+// - DSToast: Simple message toast
+// - DSSnackbar: Toast with action button
+// - DSToastManager: Queue management singleton
+// - DSToastContainerView: Container for displaying toasts
+// - DSToastType: Toast type enum (success, error, warning, info)
+// - DSToastDuration: Duration configuration (short, long, indefinite)
+// - DSToastPosition: Position configuration (top, bottom)
+// - DSToastItem: Toast item model
+// - View.toastContainer(): View modifier for toast support
+
+// MARK: - Selection Controls
+// - DSCheckbox: Checkbox with checked, unchecked, and indeterminate states
+// - DSRadioButton: Radio button for single selection
+// - DSRadioGroup: Container for grouping radio buttons with single selection
+// - DSRadio: Simplified radio button for use within DSRadioGroup
+// - DSToggle: Toggle/switch for on/off states
+
+/// Selection Controls type aliases for convenience
 public typealias Checkbox = DSCheckbox
 public typealias CheckboxState = DSCheckboxState
 public typealias CheckboxSize = DSCheckboxSize

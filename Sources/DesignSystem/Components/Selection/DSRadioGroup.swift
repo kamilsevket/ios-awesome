@@ -51,7 +51,7 @@ public struct DSRadioGroup<Value: Hashable, Content: View>: View {
     public init(
         selection: Binding<Value>,
         axis: DSRadioGroupAxis = .vertical,
-        spacing: CGFloat = DSSpacing.sm,
+        spacing: CGFloat = Spacing.sm,
         @ViewBuilder content: () -> Content
     ) {
         self._selection = selection
@@ -104,7 +104,7 @@ extension DSRadioGroup where Content == ForEach<[Value], Value, DSRadio<Value>> 
         selection: Binding<Value>,
         options: [Value],
         axis: DSRadioGroupAxis = .vertical,
-        spacing: CGFloat = DSSpacing.sm,
+        spacing: CGFloat = Spacing.sm,
         size: DSRadioButtonSize = .medium,
         labelPosition: DSRadioButtonLabelPosition = .trailing,
         labelProvider: @escaping (Value) -> String
@@ -173,7 +173,7 @@ public struct DSRadio<Value: Hashable>: View {
 
     public var body: some View {
         Button(action: select) {
-            HStack(spacing: DSSpacing.sm) {
+            HStack(spacing: Spacing.sm) {
                 if labelPosition == .leading {
                     labelView
                 }
@@ -184,7 +184,7 @@ public struct DSRadio<Value: Hashable>: View {
                     labelView
                 }
             }
-            .frame(minHeight: DSTouchTarget.minimum)
+            .frame(minHeight: DSSpacing.minTouchTarget)
         }
         .buttonStyle(.plain)
         .disabled(isDisabled)
@@ -284,7 +284,7 @@ private struct RadioGroupPreviewContainer: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DSSpacing.xl) {
+            VStack(alignment: .leading, spacing: Spacing.xl) {
                 Group {
                     Text("Vertical Radio Group (ViewBuilder)")
                         .font(.headline)
@@ -307,7 +307,7 @@ private struct RadioGroupPreviewContainer: View {
                     Text("Horizontal Radio Group")
                         .font(.headline)
 
-                    DSRadioGroup(selection: $selectedGender, axis: .horizontal, spacing: DSSpacing.lg) {
+                    DSRadioGroup(selection: $selectedGender, axis: .horizontal, spacing: Spacing.lg) {
                         DSRadio(.male, "Male")
                         DSRadio(.female, "Female")
                         DSRadio(.other, "Other")

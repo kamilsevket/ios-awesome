@@ -122,20 +122,20 @@ public struct DSToggle: View {
 
     public var body: some View {
         Button(action: toggle) {
-            HStack(spacing: DSSpacing.sm) {
+            HStack(spacing: Spacing.sm) {
                 if labelPosition == .leading, let label {
                     labelView(label)
-                    Spacer(minLength: DSSpacing.sm)
+                    Spacer(minLength: Spacing.sm)
                 }
 
                 toggleView
 
                 if labelPosition == .trailing, let label {
-                    Spacer(minLength: DSSpacing.sm)
+                    Spacer(minLength: Spacing.sm)
                     labelView(label)
                 }
             }
-            .frame(minHeight: DSTouchTarget.minimum)
+            .frame(minHeight: DSSpacing.minTouchTarget)
         }
         .buttonStyle(.plain)
         .disabled(isDisabled)
@@ -210,7 +210,7 @@ private struct TogglePreviewContainer: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DSSpacing.xl) {
+            VStack(alignment: .leading, spacing: Spacing.xl) {
                 Group {
                     Text("Basic Toggle")
                         .font(.headline)
@@ -284,7 +284,7 @@ private struct TogglePreviewContainer: View {
                     Text("Without Label")
                         .font(.headline)
 
-                    HStack(spacing: DSSpacing.lg) {
+                    HStack(spacing: Spacing.lg) {
                         DSToggle(isOn: .constant(false), size: .small)
                         DSToggle(isOn: .constant(true), size: .small)
                         DSToggle(isOn: .constant(false), size: .medium)
