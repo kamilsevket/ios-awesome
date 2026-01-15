@@ -35,6 +35,26 @@
 // - DSEmptyState.noResults(): Creates a no results state
 // - DSEmptyState.offline(): Creates an offline state
 
+// MARK: - Selection Controls
+// - DSCheckbox: Checkbox with checked, unchecked, and indeterminate states
+// - DSRadioButton: Radio button for single selection
+// - DSRadioGroup: Container for grouping radio buttons with single selection
+// - DSRadio: Simplified radio button for use within DSRadioGroup
+// - DSToggle: Toggle/switch for on/off states
+
+/// Selection Controls type aliases for convenience
+public typealias Checkbox = DSCheckbox
+public typealias CheckboxState = DSCheckboxState
+public typealias CheckboxSize = DSCheckboxSize
+
+public typealias RadioButton = DSRadioButton
+public typealias RadioButtonSize = DSRadioButtonSize
+public typealias RadioGroup = DSRadioGroup
+public typealias Radio = DSRadio
+
+public typealias Toggle = DSToggle
+public typealias ToggleSize = DSToggleSize
+
 // MARK: - Picker Components
 // - DSDatePicker: Styled date picker wrapper
 // - DSTimePicker: Styled time picker wrapper

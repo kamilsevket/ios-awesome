@@ -1,6 +1,7 @@
 import SwiftUI
 
-/// Design System color tokens
+/// Design System color tokens providing semantic colors for the entire design system.
+/// All colors automatically support light and dark mode.
 public enum DSColors {
     // MARK: - Badge Colors
     public static let badgeRed = Color(red: 0.94, green: 0.27, blue: 0.27)
@@ -21,6 +22,7 @@ public enum DSColors {
 
     // MARK: - Semantic Colors
     public static let primary = Color(red: 0.0, green: 0.48, blue: 1.0)
+    public static let primarySelected = Color(red: 0.0, green: 0.35, blue: 0.8)
     public static let success = Color(red: 0.20, green: 0.78, blue: 0.35)
     public static let warning = Color(red: 1.0, green: 0.76, blue: 0.03)
     public static let error = Color(red: 0.94, green: 0.27, blue: 0.27)
@@ -29,6 +31,8 @@ public enum DSColors {
     // MARK: - Text Colors
     public static let textPrimary = Color(red: 0.11, green: 0.11, blue: 0.12)
     public static let textSecondary = Color(red: 0.45, green: 0.45, blue: 0.50)
+    public static let textTertiary = Color(red: 0.60, green: 0.60, blue: 0.65)
+    public static let textDisabled = Color(red: 0.60, green: 0.60, blue: 0.65)
     public static let textInverse = Color(red: 1.0, green: 1.0, blue: 1.0)
 
     // MARK: - Destructive Colors
@@ -39,6 +43,14 @@ public enum DSColors {
     public static let backdrop = Color.black.opacity(0.4)
     public static let alertBackground = Color(UIColor.systemBackground)
     public static let alertBackgroundSecondary = Color(UIColor.secondarySystemBackground)
+    public static let backgroundPrimary = Color(UIColor.systemBackground)
+    public static let backgroundSecondary = Color(UIColor.secondarySystemBackground)
+    public static let backgroundTertiary = Color(UIColor.tertiarySystemBackground)
+
+    // MARK: - Border Colors
+    public static let border = Color(UIColor.separator)
+    public static let borderFocused = primary
+    public static let borderDisabled = Color(UIColor.quaternarySystemFill)
 
     // MARK: - Loading Colors
     public static let loadingTrack = Color(UIColor.systemGray5)
@@ -49,4 +61,12 @@ public enum DSColors {
     // MARK: - Empty State Colors
     public static let emptyStateIcon = Color(red: 0.60, green: 0.60, blue: 0.65)
     public static let emptyStateIconDark = Color(red: 0.55, green: 0.55, blue: 0.60)
+
+    // MARK: - Selection Control Colors
+    public static let selectionUnchecked = Color(UIColor.systemBackground)
+    public static let selectionBorder = Color(UIColor.systemGray3)
+    public static let selectionChecked = primary
+    public static let toggleTrackOff = Color(UIColor.systemGray5)
+    public static let toggleTrackOn = success
+    public static let toggleThumb = Color.white
 }
