@@ -32,6 +32,10 @@ let package = Package(
             name: "GestureUtilities",
             targets: ["GestureUtilities"]
         ),
+        .library(
+            name: "ShowcaseApp",
+            targets: ["ShowcaseApp"]
+        ),
     ],
     targets: [
         .target(
@@ -79,6 +83,17 @@ let package = Package(
         .testTarget(
             name: "GestureUtilitiesTests",
             dependencies: ["GestureUtilities"]
+        ),
+        .target(
+            name: "ShowcaseApp",
+            dependencies: [
+                "DesignSystem",
+                "FoundationColor",
+                "DesignSystemTypography",
+                "FoundationIcons",
+                "GestureUtilities"
+            ],
+            path: "Sources/ShowcaseApp"
         ),
     ]
 )
