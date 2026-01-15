@@ -30,4 +30,13 @@ public enum DSColors {
     public static let textPrimary = Color(red: 0.11, green: 0.11, blue: 0.12)
     public static let textSecondary = Color(red: 0.45, green: 0.45, blue: 0.50)
     public static let textInverse = Color(red: 1.0, green: 1.0, blue: 1.0)
+
+    // MARK: - Destructive Colors
+    public static let destructive = Color(red: 0.94, green: 0.27, blue: 0.27)
+    public static let destructiveDark = Color(red: 0.90, green: 0.22, blue: 0.22)
+
+    // MARK: - Background Colors
+    public static let backdrop = Color.black.opacity(0.4)
+    public static let alertBackground = Color(UIColor.systemBackground)
+    public static let alertBackgroundSecondary = Color(UIColor.secondarySystemBackground)
 }
