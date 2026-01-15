@@ -34,4 +34,10 @@ public enum DSColors {
     public static let backdrop = Color.black.opacity(0.4)
     public static let alertBackground = Color(UIColor.systemBackground)
     public static let alertBackgroundSecondary = Color(UIColor.secondarySystemBackground)
+
+    // MARK: - Loading Colors
+    public static let loadingTrack = Color(UIColor.systemGray5)
+    public static let loadingTrackDark = Color(UIColor.systemGray4)
+    public static let shimmerBase = Color(UIColor.systemGray5)
+    public static let shimmerHighlight = Color(UIColor.systemGray6)
 }
