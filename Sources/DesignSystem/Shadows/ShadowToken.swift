@@ -8,6 +8,8 @@ import SwiftUI
 /// ```swift
 /// .shadow(.ds.md)
 /// .shadow(.ds.lg)
+/// // Or with colorScheme support:
+/// .shadow(.md, colorScheme: colorScheme)
 /// ```
 public enum ShadowToken: String, CaseIterable, Sendable {
     case none
@@ -94,4 +96,23 @@ public struct DSShadowTokens {
 public extension ShadowToken {
     /// Access design system shadow tokens via `.ds` namespace.
     static let ds = DSShadowTokens()
+}
+
+// MARK: - View Extension
+
+public extension View {
+    /// Applies a shadow token to the view with optional colorScheme support.
+    /// - Parameters:
+    ///   - token: The shadow token to apply.
+    ///   - colorScheme: The current color scheme for adapting shadow color (default: .light).
+    /// - Returns: A view with the shadow applied.
+    func shadow(_ token: ShadowToken, colorScheme: ColorScheme = .light) -> some View {
+        let shadowColor = colorScheme == .dark ? token.darkModeColor : token.color
+        return self.shadow(
+            color: shadowColor,
+            radius: token.blur,
+            x: token.x,
+            y: token.y
+        )
+    }
 }

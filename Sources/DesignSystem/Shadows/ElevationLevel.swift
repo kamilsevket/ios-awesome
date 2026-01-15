@@ -82,7 +82,7 @@ public struct ElevationModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .shadow(level.shadowToken)
+            .shadow(level.shadowToken, colorScheme: colorScheme)
             .zIndex(includeZIndex ? level.zIndex : 0)
     }
 }
@@ -126,7 +126,7 @@ public struct AnimatedElevationModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .shadow(level.shadowToken)
+            .shadow(level.shadowToken, colorScheme: colorScheme)
             .zIndex(level.zIndex)
             .animation(animation, value: level)
     }
