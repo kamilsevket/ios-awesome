@@ -172,7 +172,9 @@ public struct LongPressProgressModifier: ViewModifier {
         progress = 0
 
         if configuration.hapticOnStart {
-            HapticManager.shared.trigger(.light)
+            Task { @MainActor in
+                HapticManager.shared.trigger(.light)
+            }
         }
 
         let updateInterval: TimeInterval = 0.02

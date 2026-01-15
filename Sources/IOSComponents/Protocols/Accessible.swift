@@ -18,7 +18,7 @@ public protocol Accessible {
 /// Default implementations for Accessible protocol
 public extension Accessible {
     var accessibilityHint: String? { nil }
-    var accessibilityTraits: AccessibilityTraits { .none }
+    var accessibilityTraits: AccessibilityTraits { [] }
     var isAccessibilityElement: Bool { true }
 }
 
@@ -33,7 +33,7 @@ public struct AccessibilityConfiguration {
     public init(
         label: String,
         hint: String? = nil,
-        traits: AccessibilityTraits = .none,
+        traits: AccessibilityTraits = [],
         value: String? = nil,
         isElement: Bool = true
     ) {
