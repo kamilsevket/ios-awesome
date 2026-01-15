@@ -28,6 +28,10 @@ let package = Package(
             name: "FoundationIcons",
             targets: ["FoundationIcons"]
         ),
+        .library(
+            name: "GestureUtilities",
+            targets: ["GestureUtilities"]
+        ),
     ],
     targets: [
         .target(
@@ -68,6 +72,13 @@ let package = Package(
         .testTarget(
             name: "FoundationIconsTests",
             dependencies: ["FoundationIcons"]
+        ),
+        .target(
+            name: "GestureUtilities"
+        ),
+        .testTarget(
+            name: "GestureUtilitiesTests",
+            dependencies: ["GestureUtilities"]
         ),
     ]
 )
