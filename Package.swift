@@ -36,6 +36,10 @@ let package = Package(
             name: "IOSComponents",
             targets: ["IOSComponents"]
         ),
+        .library(
+            name: "ShowcaseApp",
+            targets: ["ShowcaseApp"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.15.0")
@@ -73,6 +77,19 @@ let package = Package(
             name: "IOSComponents",
             dependencies: [],
             path: "Sources/IOSComponents"
+        ),
+
+        // ShowcaseApp target
+        .target(
+            name: "ShowcaseApp",
+            dependencies: [
+                "DesignSystem",
+                "FoundationColor",
+                "DesignSystemTypography",
+                "FoundationIcons",
+                "GestureUtilities"
+            ],
+            path: "Sources/ShowcaseApp"
         ),
 
         // Design System test targets
