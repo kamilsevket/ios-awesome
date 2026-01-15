@@ -33,11 +33,19 @@ let package = Package(
             targets: ["GestureUtilities"]
         ),
         .library(
+            name: "IOSComponents",
+            targets: ["IOSComponents"]
+        ),
+        .library(
             name: "ShowcaseApp",
             targets: ["ShowcaseApp"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.15.0")
+    ],
     targets: [
+        // Design System targets
         .target(
             name: "DesignSystem",
             path: "Sources/DesignSystem"
@@ -60,6 +68,31 @@ let package = Package(
                 .process("Resources")
             ]
         ),
+        .target(
+            name: "GestureUtilities"
+        ),
+
+        // IOSComponents target
+        .target(
+            name: "IOSComponents",
+            dependencies: [],
+            path: "Sources/IOSComponents"
+        ),
+
+        // ShowcaseApp target
+        .target(
+            name: "ShowcaseApp",
+            dependencies: [
+                "DesignSystem",
+                "FoundationColor",
+                "DesignSystemTypography",
+                "FoundationIcons",
+                "GestureUtilities"
+            ],
+            path: "Sources/ShowcaseApp"
+        ),
+
+        // Design System test targets
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"],
@@ -77,23 +110,34 @@ let package = Package(
             name: "FoundationIconsTests",
             dependencies: ["FoundationIcons"]
         ),
-        .target(
-            name: "GestureUtilities"
-        ),
         .testTarget(
             name: "GestureUtilitiesTests",
             dependencies: ["GestureUtilities"]
         ),
-        .target(
-            name: "ShowcaseApp",
+
+        // IOSComponents test targets
+        .testTarget(
+            name: "UnitTests",
+            dependencies: ["IOSComponents"],
+            path: "Tests/UnitTests"
+        ),
+        .testTarget(
+            name: "SnapshotTests",
             dependencies: [
-                "DesignSystem",
-                "FoundationColor",
-                "DesignSystemTypography",
-                "FoundationIcons",
-                "GestureUtilities"
+                "IOSComponents",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
-            path: "Sources/ShowcaseApp"
+            path: "Tests/SnapshotTests"
+        ),
+        .testTarget(
+            name: "UITests",
+            dependencies: ["IOSComponents"],
+            path: "Tests/UITests"
+        ),
+        .testTarget(
+            name: "AccessibilityTests",
+            dependencies: ["IOSComponents"],
+            path: "Tests/AccessibilityTests"
         ),
     ]
 )
