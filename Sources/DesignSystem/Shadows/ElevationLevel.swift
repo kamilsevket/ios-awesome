@@ -96,7 +96,53 @@ public extension View {
     ///   - level: The elevation level to apply.
     ///   - includeZIndex: Whether to set the z-index based on elevation. Default is true.
     /// - Returns: A view with the elevation applied.
+    ///
+    /// Usage:
+    /// ```swift
+    /// Card()
+    ///     .elevation(.level2)
+    ///
+    /// Modal()
+    ///     .elevation(.modal)
+    /// ```
     func elevation(_ level: ElevationLevel, includeZIndex: Bool = true) -> some View {
         modifier(ElevationModifier(level: level, includeZIndex: includeZIndex))
+    }
+}
+
+// MARK: - Animated Elevation Modifier
+
+/// A view modifier that animates between elevation levels.
+public struct AnimatedElevationModifier: ViewModifier {
+    @Environment(\.colorScheme) private var colorScheme
+
+    private let level: ElevationLevel
+    private let animation: Animation
+
+    public init(level: ElevationLevel, animation: Animation = .easeInOut(duration: 0.2)) {
+        self.level = level
+        self.animation = animation
+    }
+
+    public func body(content: Content) -> some View {
+        content
+            .shadow(level.shadowToken, colorScheme: colorScheme)
+            .zIndex(level.zIndex)
+            .animation(animation, value: level)
+    }
+}
+
+public extension View {
+    /// Applies an animated elevation transition to the view.
+    ///
+    /// - Parameters:
+    ///   - level: The elevation level to animate to.
+    ///   - animation: The animation to use for the transition.
+    /// - Returns: A view with animated elevation.
+    func animatedElevation(
+        _ level: ElevationLevel,
+        animation: Animation = .easeInOut(duration: 0.2)
+    ) -> some View {
+        modifier(AnimatedElevationModifier(level: level, animation: animation))
     }
 }

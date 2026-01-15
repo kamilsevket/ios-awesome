@@ -6,8 +6,10 @@ import SwiftUI
 ///
 /// Usage:
 /// ```swift
-/// .shadow(token: .md)
-/// .shadow(token: .lg)
+/// .shadow(.ds.md)
+/// .shadow(.ds.lg)
+/// // Or with colorScheme support:
+/// .shadow(.md, colorScheme: colorScheme)
 /// ```
 public enum ShadowToken: String, CaseIterable, Sendable {
     case none
@@ -78,13 +80,31 @@ public enum ShadowToken: String, CaseIterable, Sendable {
     }
 }
 
+// MARK: - Shadow Token Namespace
+
+/// Namespace for accessing design system shadow tokens.
+public struct DSShadowTokens {
+    public let none = ShadowToken.none
+    public let sm = ShadowToken.sm
+    public let md = ShadowToken.md
+    public let lg = ShadowToken.lg
+    public let xl = ShadowToken.xl
+}
+
+// MARK: - Shadow Namespace Extension
+
+public extension ShadowToken {
+    /// Access design system shadow tokens via `.ds` namespace.
+    static let ds = DSShadowTokens()
+}
+
 // MARK: - View Extension
 
 public extension View {
-    /// Applies a shadow token to the view.
+    /// Applies a shadow token to the view with optional colorScheme support.
     /// - Parameters:
     ///   - token: The shadow token to apply.
-    ///   - colorScheme: The current color scheme for adapting shadow color.
+    ///   - colorScheme: The current color scheme for adapting shadow color (default: .light).
     /// - Returns: A view with the shadow applied.
     func shadow(_ token: ShadowToken, colorScheme: ColorScheme = .light) -> some View {
         let shadowColor = colorScheme == .dark ? token.darkModeColor : token.color
